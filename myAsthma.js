@@ -21,7 +21,11 @@ console.log('loaded myAsthma.js :-)');
         var imgSrc = localStorage.myAsthmaPic
         if(imgSrc){
             myAsthmaPic.src=localStorage.myAsthmaPic
-            msg.textContent='you can load a new action plan if you want'
+            msg.innerHTML='you can load a new action plan if you want <span id="adPlan" style="color:red">+</span>'
+            adPlan.onclick=function(){
+                inputFile.hidden=false
+            }
+            inputFile.hidden=true
         }
     }
     inputFile.onchange=function(evt){
