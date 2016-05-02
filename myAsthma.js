@@ -6,7 +6,8 @@ console.log('loaded myAsthma.js :-)');
     h += '<h2 style="color:maroon">Asthma action plan management</h2>'
     h += '<h3 style="color:navy" id="msg"> Start by loading an Action Plan:</h3>'
     h += '<h3 id="loadFileDiv"><input type="file" id="inputFile" class="btn btn-primary btn-md"></h3>'
-    h += '<div id="yourHistory">'
+    h += '<hr>'
+    h += '<div id="myAsthmaHistoryDiv">'
     h += 'history'
     h += '</div>'
     h += '<div id="howDoYouFeel">'
@@ -21,7 +22,6 @@ console.log('loaded myAsthma.js :-)');
         localStorage.setItem('myAsthmaPic',f.target.result)
         console.log('pic size '+f.total+' saved in localStorage')
         loadImg()
-        4
     }
     var loadImg=function(){
         var imgSrc = localStorage.myAsthmaPic
@@ -61,7 +61,94 @@ console.log('loaded myAsthma.js :-)');
         }
     }
 
-    4
+    // load history
+    var loadAsthmaHistory=function(){
+        if(localStorage.asthmaHistory){
+            console.log('load asthma history')
+            $.getScript('https://www.gstatic.com/charts/loader.js')
+             .then(function(){
+                 var asthmaHistory=JSON.parse(localStorage.asthmaHistory)
+                 /*
+                 google.charts.load('current', {'packages':['corechart']})
+                 var drawChart=function() {
+                    var data = google.visualization.arrayToDataTable([
+                      ['Age', 'Weight'],
+                      [ new Date(2000000000000*Math.random()),      12],
+                      [ new Date(2000000000000*Math.random()),      5.5],
+                      [ new Date(2000000000000*Math.random()),     14],
+                      [ new Date(2000000000000*Math.random()),      5],
+                      [ new Date(2000000000000*Math.random()),      3.5],
+                      [ new Date(2000000000000*Math.random()),    7]
+                    ])
+
+                    var options = {
+                          title: 'Age vs. Weight comparison',
+                          hAxis: {title: 'Age', minValue: 0, maxValue: 15},
+                          vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+                          legend: 'none'
+                     };
+                     myAsthmaHistoryDiv.style.height="20%"
+                     var chart = new google.visualization.ScatterChart(document.getElementById('myAsthmaHistoryDiv'))
+                     chart.draw(data, options)
+
+                 }
+                 google.charts.setOnLoadCallback(drawChart)
+                 */
+                google.charts.load('current', {'packages':['timeline']});
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                  var data = new google.visualization.DataTable();
+                  data.addColumn('string', 'Team');
+                  data.addColumn('date', 'Season Start Date');
+                  data.addColumn('date', 'Season End Date');
+
+                  data.addRows([
+                    ['Good',     new Date(2000, 8, 5), new Date(2001, 1, 5)],
+                    ['Soso', new Date(2001, 8, 5), new Date(2002, 1, 5)],
+                    ['Bad', new Date(2002, 8, 5), new Date(2003, 1, 5)],
+                    ['Good', new Date(2003, 8, 5), new Date(2004, 1, 5)],
+                    ['Bad', new Date(2004, 8, 5), new Date(2005, 1, 5)],
+                    ['Soso',  new Date(2005, 8, 5), new Date(2006, 1, 5)],
+                    ['Good',   new Date(2006, 8, 5), new Date(2007, 1, 5)],
+                    ['Good',      new Date(2007, 8, 5), new Date(2008, 1, 5)],
+                    ['Soso',  new Date(2008, 8, 5), new Date(2009, 1, 5)],
+                    ['Good',   new Date(2009, 8, 5), new Date(2010, 1, 5)],
+                    ['Bad',    new Date(2010, 8, 5), new Date(2011, 1, 5)],
+                    ['Good',      new Date(2011, 8, 5), new Date(2012, 1, 5)],
+                    ['Soso',     new Date(2012, 8, 5), new Date(2013, 1, 5)],
+                    ['Bad',     new Date(2013, 8, 5), new Date(2014, 1, 5)],
+                  ]);
+
+                  var options = {
+                    height: 450,
+                    timeline: {
+                      groupByRowLabel: true
+                    }
+                  }
+                  var chart = new google.visualization.Timeline(document.getElementById('myAsthmaHistoryDiv'));
+
+                  chart.draw(data, options);
+                }
+
+
+                     
+
+
+                 4
+             })
+            
+            4
+        }else{
+            localStorage.asthmaHistory='[["time","felling"]]'
+        }
+    }
+    loadAsthmaHistory()
+
+        
+
+
+
 
     // dependencies
 
