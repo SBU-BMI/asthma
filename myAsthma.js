@@ -1,11 +1,11 @@
 console.log('loaded myAsthma.js :-)');
 
 (function(){
-    document.body.style.backgroundColor="silver"
+    //document.body.style.backgroundColor="silver"
     var h ='</div>'
     h += '<h2 style="color:maroon">Asthma action plan management</h2>'
-    h += '<h3 style="color:blue" id="msg"> Start by loading an Action Plan:</h3>'
-    h += '<h3 id="loadFileDiv"><input type="file" id="inputFile"></h3>'
+    h += '<h3 style="color:navy" id="msg"> Start by loading an Action Plan:</h3>'
+    h += '<h3 id="loadFileDiv"><input type="file" id="inputFile" class="btn btn-primary btn-md"></h3>'
     h += '<div id="yourHistory">'
     h += 'history'
     h += '</div>'
@@ -27,14 +27,14 @@ console.log('loaded myAsthma.js :-)');
         var imgSrc = localStorage.myAsthmaPic
         if(imgSrc){
             myAsthmaPic.src=imgSrc
-            msg.innerHTML='You have a <a href="#" id="gotoPlanOnFile">plan onfile</a>,<br> you can also load a new action plan if you prefer <span id="addPlan" style="color:green">(+)</span>'
+            msg.innerHTML='You have a <button class="btn btn-primary btn-lg" id="gotoPlanOnFile">plan on file</button>,<br> you can also load a new plan: <button id="addPlan" class="btn btn-primary btn-md">+</button>'
             addPlan.onclick=function(){
                 if(loadFileDiv.hidden){
                     loadFileDiv.hidden=false
-                    addPlan.textContent="(-)"
+                    addPlan.textContent="-"
                 }else{
                     loadFileDiv.hidden=true
-                    addPlan.textContent="(+)"
+                    addPlan.textContent="+"
                 }
                 
             }
