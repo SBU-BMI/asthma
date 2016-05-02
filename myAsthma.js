@@ -3,9 +3,9 @@ console.log('loaded myAsthma.js :-)');
 (function(){
     document.body.style.backgroundColor="silver"
     var h ='</div>'
-    h += '<h3 style="color:maroon">Welcome to your action plan</h3>'
-    h += '<div style="color:blue" id="msg"> Start by loading an Action Plan:</div>'
-    h += '<div id="loadFileDiv"><input type="file" id="inputFile"></div>'
+    h += '<h2 style="color:maroon">Asthma action plan management</h2>'
+    h += '<h3 style="color:blue" id="msg"> Start by loading an Action Plan:</h3>'
+    h += '<h3 id="loadFileDiv"><input type="file" id="inputFile"></h3>'
     h += '<div id="yourHistory">'
     h += 'history'
     h += '</div>'
@@ -26,8 +26,8 @@ console.log('loaded myAsthma.js :-)');
     var loadImg=function(){
         var imgSrc = localStorage.myAsthmaPic
         if(imgSrc){
-            //myAsthmaPic.src=imgSrc
-            msg.innerHTML='You have a <a href="#" id="gotoPlanOnFile">plan onfile</a>, you can also load a new action plan if you prefer <span id="addPlan" style="color:green">(+)</span>'
+            myAsthmaPic.src=imgSrc
+            msg.innerHTML='You have a <a href="#" id="gotoPlanOnFile">plan onfile</a>,<br> you can also load a new action plan if you prefer <span id="addPlan" style="color:green">(+)</span>'
             addPlan.onclick=function(){
                 if(loadFileDiv.hidden){
                     loadFileDiv.hidden=false
@@ -52,10 +52,10 @@ console.log('loaded myAsthma.js :-)');
             console.log('show asthma action plan on file')
             myAsthmaPicDiv.hidden=false
             myAsthmaPic.style.width="100%"
-            myAsthmaPic.src=localStorage.myAsthmaPic
+            //myAsthmaPic.src=localStorage.myAsthmaPic
         }else{
             console.log('hide asthma action plan')
-            myAsthmaPic.src=""
+            //myAsthmaPic.src=""
             myAsthmaPicDiv.hidden=true
             myAsthmaPic.style.width="100%"
         }
