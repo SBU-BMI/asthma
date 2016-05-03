@@ -7,7 +7,7 @@ console.log('loaded myAsthma.js :-)');
     h += '<h3 style="color:navy" id="msg"> Start by loading an Action Plan:</h3>'
     h += '<h3 id="loadFileDiv"><input type="file" id="inputFile" class="btn btn-primary btn-md"></h3>'
     h += '<hr>'
-    h += '<div id="myAsthmaHistoryDiv" style="height:140px">'
+    h += '<div id="myAsthmaHistoryDiv">'
     h += 'history'
     h += '</div>'
     h += '<div id="howDoYouFeelDiv">'
@@ -38,7 +38,7 @@ console.log('loaded myAsthma.js :-)');
         var imgSrc = localStorage.myAsthmaPic
         if(imgSrc){
             myAsthmaPic.src=imgSrc
-            msg.innerHTML='You have a <button class="btn btn-primary btn-lg" id="gotoPlanOnFile">plan on file</button>,<br> you can also load a new plan: <button id="addPlan" class="btn btn-primary btn-md">+</button>'
+            msg.innerHTML='You have a <button class="btn btn-primary btn-lg" id="gotoPlanOnFile">asthma plan on file</button>,<br> you can also load a new plan: <button id="addPlan" class="btn btn-primary btn-md">+</button>'
             addPlan.onclick=function(){
                 if(loadFileDiv.hidden){
                     loadFileDiv.hidden=false
@@ -78,38 +78,13 @@ console.log('loaded myAsthma.js :-)');
             console.log('load asthma history')
             $.getScript('https://www.gstatic.com/charts/loader.js')
              .then(function(){
-                 var asthmaHistory=JSON.parse(localStorage.asthmaHistory)
-                 /*
-                 google.charts.load('current', {'packages':['corechart']})
-                 var drawChart=function() {
-                    var data = google.visualization.arrayToDataTable([
-                      ['Age', 'Weight'],
-                      [ new Date(2000000000000*Math.random()),      12],
-                      [ new Date(2000000000000*Math.random()),      5.5],
-                      [ new Date(2000000000000*Math.random()),     14],
-                      [ new Date(2000000000000*Math.random()),      5],
-                      [ new Date(2000000000000*Math.random()),      3.5],
-                      [ new Date(2000000000000*Math.random()),    7]
-                    ])
-
-                    var options = {
-                          title: 'Age vs. Weight comparison',
-                          hAxis: {title: 'Age', minValue: 0, maxValue: 15},
-                          vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
-                          legend: 'none'
-                     };
-                     myAsthmaHistoryDiv.style.height="20%"
-                     var chart = new google.visualization.ScatterChart(document.getElementById('myAsthmaHistoryDiv'))
-                     chart.draw(data, options)
-
-                 }
-                 google.charts.setOnLoadCallback(drawChart)
-                 */
+                var asthmaHistory=JSON.parse(localStorage.asthmaHistory) 
                 google.charts.load('current', {'packages':['timeline']});
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
                   var data = new google.visualization.DataTable();
+                  //data.addColumn('string', 'Term');
                   data.addColumn('string', 'Team');
                   data.addColumn('date', 'Start Date');
                   data.addColumn('date', 'End Date');
@@ -132,10 +107,12 @@ console.log('loaded myAsthma.js :-)');
                   ]);
 
                   var options = {
-                    height: 450,
+                    height: 180,
                     timeline: {
                       groupByRowLabel: true
-                    }
+                    },
+                    colors: ['green', 'orange', 'red']
+
                   }
                   var chart = new google.visualization.Timeline(myAsthmaHistoryDiv);
 
