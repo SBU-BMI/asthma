@@ -3,15 +3,26 @@ console.log('loaded myAsthma.js :-)');
 (function(){
     //document.body.style.backgroundColor="silver"
     var h ='</div>'
-    h += '<h2 style="color:maroon">Asthma action plan management</h2>'
+    //h += '<h2 style="color:maroon">Asthma tracker</h2>'
     h += '<h3 style="color:navy" id="msg"> Start by loading an Action Plan:</h3>'
     h += '<h3 id="loadFileDiv"><input type="file" id="inputFile" class="btn btn-primary btn-md"></h3>'
     h += '<hr>'
-    h += '<div id="myAsthmaHistoryDiv">'
+    h += '<div id="myAsthmaHistoryDiv" style="height:140px">'
     h += 'history'
     h += '</div>'
     h += '<div id="howDoYouFeel">'
-    h += 'how do you feel'
+        h += 'How do you feel'
+        h += '<table id="howDoYouFeel"><tr>'
+            h += '<td id="howDoYouFeelIcons" style="font-size:50px">'
+                h += '<div id="feelFine" style="color:green"><i class="fa fa-smile-o"></i></div>'
+                h += '<div id="feelNotso" style="color:orange"><i class="fa fa-meh-o"></i></div>'
+                h += '<div id="feelBad" style="color:red"><i class="fa fa-frown-o"></i></div>'
+            h += '</td>'
+            h += '<td id="howDoYouFeelTxt" style="font-size:20px">'
+            h += '<i><i class="fa fa-arrow-left"></i> click on one, choose between <span style="color:green">Fine</span> (no coughing or problems breathing), <span style="color:orange">Not good</span> (wheezing, tight chest, waking up at nigh because of asthma), and <span style="color:red">Bad</span> (very short of breath, medication not helping).</i>'
+            h += '</td>'
+
+        h += '</tr></table>'
     h += '</div>'
     h += '<hr><div id="myAsthmaPicDiv" hidden><img id="myAsthmaPic" class="zoomTarget"></div>'
     h += '</div>'
@@ -100,23 +111,23 @@ console.log('loaded myAsthma.js :-)');
                 function drawChart() {
                   var data = new google.visualization.DataTable();
                   data.addColumn('string', 'Team');
-                  data.addColumn('date', 'Season Start Date');
-                  data.addColumn('date', 'Season End Date');
+                  data.addColumn('date', 'Start Date');
+                  data.addColumn('date', 'End Date');
 
                   data.addRows([
-                    ['Good',     new Date(2000, 8, 5), new Date(2001, 1, 5)],
-                    ['Soso', new Date(2001, 8, 5), new Date(2002, 1, 5)],
+                    ['Fine',     new Date(2000, 8, 5), new Date(2001, 1, 5)],
+                    ['Not good', new Date(2001, 8, 5), new Date(2002, 1, 5)],
                     ['Bad', new Date(2002, 8, 5), new Date(2003, 1, 5)],
-                    ['Good', new Date(2003, 8, 5), new Date(2004, 1, 5)],
+                    ['Fine', new Date(2003, 8, 5), new Date(2004, 1, 5)],
                     ['Bad', new Date(2004, 8, 5), new Date(2005, 1, 5)],
-                    ['Soso',  new Date(2005, 8, 5), new Date(2006, 1, 5)],
-                    ['Good',   new Date(2006, 8, 5), new Date(2007, 1, 5)],
-                    ['Good',      new Date(2007, 8, 5), new Date(2008, 1, 5)],
-                    ['Soso',  new Date(2008, 8, 5), new Date(2009, 1, 5)],
-                    ['Good',   new Date(2009, 8, 5), new Date(2010, 1, 5)],
+                    ['Not good',  new Date(2005, 8, 5), new Date(2006, 1, 5)],
+                    ['Fine',   new Date(2006, 8, 5), new Date(2007, 1, 5)],
+                    ['Fine',      new Date(2007, 8, 5), new Date(2008, 1, 5)],
+                    ['Not good',  new Date(2008, 8, 5), new Date(2009, 1, 5)],
+                    ['Fine',   new Date(2009, 8, 5), new Date(2010, 1, 5)],
                     ['Bad',    new Date(2010, 8, 5), new Date(2011, 1, 5)],
-                    ['Good',      new Date(2011, 8, 5), new Date(2012, 1, 5)],
-                    ['Soso',     new Date(2012, 8, 5), new Date(2013, 1, 5)],
+                    ['Fine',      new Date(2011, 8, 5), new Date(2012, 1, 5)],
+                    ['Not good',     new Date(2012, 8, 5), new Date(2013, 1, 5)],
                     ['Bad',     new Date(2013, 8, 5), new Date(2014, 1, 5)],
                   ]);
 
@@ -126,7 +137,7 @@ console.log('loaded myAsthma.js :-)');
                       groupByRowLabel: true
                     }
                   }
-                  var chart = new google.visualization.Timeline(document.getElementById('myAsthmaHistoryDiv'));
+                  var chart = new google.visualization.Timeline(myAsthmaHistoryDiv);
 
                   chart.draw(data, options);
                 }
