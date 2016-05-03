@@ -1,6 +1,6 @@
 {
-    "name":"myAsthma",
-    "description":"myAsthma alternative App",
+    "name":"asthmaTrack",
+    "description":"Asthma tracker",
     "icon":"https://static.ddmcdn.com/gif/lungs-reseeding-transplant-677034-.jpg",
     "onclick":"https://sbu-bmi.github.io/asthma/myAsthma.js"
 }
