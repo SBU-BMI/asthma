@@ -105,12 +105,12 @@ console.log('loaded myAsthma.js :-)');
             case "green":
                 console.log('feeling good')
                 howDoYouFeelTxt.style.verticalAlign="top"
-                var h = 'Glad to hear that. Please consult Asthma medical plan and record medication:'
+                var h = 'Glad to hear that. Please consult Asthma medical plan and record medication.'
                 break
             case "orange":
                 console.log('feeling not so good')
                 howDoYouFeelTxt.style.verticalAlign="middle"
-                var h = 'Sorry to hear that. Please record medication:'
+                var h = 'Sorry to hear that. Please record medication.'
                 break
             case "red":
                 console.log('MEDICAL ALERT.')
@@ -137,9 +137,24 @@ console.log('loaded myAsthma.js :-)');
         }
 
         // add recording UI
-        h += '<div id="asthmaActionRecordUI">...</div>'
+        h += '<div id="asthmaActionRecordUI" style="font-size:x-large">...</div>'
         howDoYouFeelTxt.innerHTML=h
-        h=''
+        h='<h3> <button id="asthmaLogBookRecord" style="font-size:x-large">Record</button> in your Log Book:</h3>'
+        h += '<p> Used Inhaler <input id="usedInhaler" type="checkbox"></p>'
+        asthmaActionRecordUI.innerHTML=h
+        // button decoration
+        switch(this.style.color) {
+            case "green":
+                asthmaLogBookRecord.className="btn btn-success"
+                break
+            case "orange":
+                asthmaLogBookRecord.className="btn btn-warning"
+                break
+            case "red":
+                asthmaLogBookRecord.className="btn btn-danger"
+                break
+        }
+
         
 
         
