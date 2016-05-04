@@ -115,7 +115,7 @@ console.log('loaded myAsthma.js :-)');
             case "red":
                 console.log('MEDICAL ALERT.')
                 howDoYouFeelTxt.style.verticalAlign="bottom"
-                var h = 'This could be a medical emergency. Please consult your Asthma Medical plan for immediate relief action and follow EMERGENCY plan if you can\'t reach your doctor after <span style="color:blue">15 minutes</span>.'
+                var h = 'This could be a medical emergency. Please consult your Asthma Medical plan for immediate relief and follow the EMERGENCY plan if you can\'t reach your doctor after <span style="color:blue">15 minutes</span>.'
                 h += '<p style="background-color:yellow;text-align:center">Time since MEDICAL ALERT: <span id="timeSinceALERT" style="color:blue;font-size:xx-large">0:00</span></p>'
                 howDoYouFeelTxt.innerHTML=h
                 howDoYouFeelTxt.alertTimeCounter = {}
@@ -139,8 +139,11 @@ console.log('loaded myAsthma.js :-)');
         // add recording UI
         h += '<div id="asthmaActionRecordUI" style="font-size:x-large">...</div>'
         howDoYouFeelTxt.innerHTML=h
-        h='<h3> <button id="asthmaLogBookRecord" style="font-size:x-large">Record</button> in your Log Book:</h3>'
-        h += '<p> Used Inhaler <input id="usedInhaler" type="checkbox"></p>'
+        h='<h3> <button id="asthmaLogBookRecord" style="font-size:x-large">Save</button> in your Log Book:</h3>'
+        h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Used Inhaler <input id="usedInhaler" type="checkbox"></p>'
+        h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Took Medicine <input id="tookPills" type="checkbox"> <span style="font-size:medium">(pill / tablet)</span></p>'
+        h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Indoors <input id="amIndoor" type="checkbox"> / Outdoors <input id="amOutdoor" type="checkbox"></p>'
+        
         asthmaActionRecordUI.innerHTML=h
         // button decoration
         switch(this.style.color) {
