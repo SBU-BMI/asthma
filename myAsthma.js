@@ -32,6 +32,7 @@ console.log('loaded myAsthma.js :-)');
         localStorage.setItem('myAsthmaPic',f.target.result)
         console.log('pic size '+f.total+' saved in localStorage')
         loadImg()
+        gotoPlanOnFile.click()
     }
 
     var showPlan=function(){
@@ -62,9 +63,9 @@ console.log('loaded myAsthma.js :-)');
         var imgSrc = localStorage.myAsthmaPic
         if(imgSrc){
             myAsthmaPic.src=imgSrc
-            msg.innerHTML='You have a <button class="btn btn-primary btn-lg" id="gotoPlanOnFile">asthma plan on file</button>,<br> you can also load a new plan: <button id="addPlan" class="btn btn-primary btn-md">+</button>'
+            msg.innerHTML='You have an <button class="btn btn-primary btn-lg" id="gotoPlanOnFile">asthma plan on file</button>,<br> you can also load a new plan: <button id="addPlan" class="btn btn-primary btn-md">+</button>'
             triggerPlan()
-            gotoPlanOnFile.click()
+            //gotoPlanOnFile.click()
             addPlan.onclick=function(){
                 if(loadFileDiv.hidden){
                     loadFileDiv.hidden=false
@@ -97,22 +98,49 @@ console.log('loaded myAsthma.js :-)');
     }
 
     feelFine.onclick=feelNotso.onclick=feelBad.onclick=function(){
-        console.log(Date())
+        //console.log(Date())
+        howDoYouFeelTxt.style.color=this.style.color
         var h = ''
         switch(this.style.color) {
             case "green":
-                console.log(1)
+                console.log('feeling good')
+                howDoYouFeelTxt.style.verticalAlign="top"
+                var h = 'Glad to hear that. Please consult Asthma medical plan and record medication:'
                 break
             case "orange":
-                console.log(2)
+                console.log('feeling not so good')
+                howDoYouFeelTxt.style.verticalAlign="middle"
+                var h = 'Sorry to hear that. Please record medication:'
                 break
             case "red":
-                console.log(3)
+                console.log('MEDICAL ALERT.')
+                howDoYouFeelTxt.style.verticalAlign="bottom"
+                var h = 'This could be a medical emergency. Please consult your Asthma Medical plan for immediate relief action and follow EMERGENCY plan if you can\'t reach your doctor after <span style="color:blue">15 minutes</span>.'
+                h += '<p style="background-color:yellow;text-align:center">Time since MEDICAL ALERT: <span id="timeSinceALERT" style="color:blue;font-size:xx-large">0:00</span></p>'
+                howDoYouFeelTxt.innerHTML=h
+                howDoYouFeelTxt.alertTimeCounter = {}
+                howDoYouFeelTxt.alertTimeCounter.time0=new Date()
+                howDoYouFeelTxt.alertTimeCounter.t=setInterval(function(){
+                    var t = (new Date()-howDoYouFeelTxt.alertTimeCounter.time0)
+                    var mm = Math.floor(t/1000/60)
+                    var ss = Math.round((t-mm*60*1000)/1000)
+                    if(ss.toString().length<2){ss = '0'+ss.toString()}
+                    if(document.getElementById('timeSinceALERT')){
+                        timeSinceALERT.textContent=mm+':'+ss
+                    }
+                },1000)
+                
                 break
             default:
                 console.log(4)
                 break
         }
+
+        // add recording UI
+        h += '<div id="asthmaActionRecordUI">...</div>'
+        howDoYouFeelTxt.innerHTML=h
+        h=''
+        
 
         
     }
