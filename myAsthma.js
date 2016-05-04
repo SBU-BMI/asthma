@@ -32,7 +32,7 @@ console.log('loaded myAsthma.js :-)');
         localStorage.setItem('myAsthmaPic',f.target.result)
         console.log('pic size '+f.total+' saved in localStorage')
         loadImg()
-        gotoPlanOnFile.click()
+        showPlan()
     }
 
     var showPlan=function(){
