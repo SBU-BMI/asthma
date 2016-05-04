@@ -21,7 +21,6 @@ console.log('loaded myAsthma.js :-)');
             h += '<td id="howDoYouFeelTxt" style="font-size:16px">'
             h += '<i><p><b>How do you feel today?</b></p><p><i class="fa fa-arrow-left"></i> choose between <b style="color:green">Fine</b> (no coughing or problems breathing), <b style="color:orange">Not good</b> (wheezing, tight chest, waking up at nigh because of asthma), and <b style="color:red">Bad</b> (very short of breath, medication not helping).</p></i>'
             h += '</td>'
-
         h += '</tr></table>'
     h += '</div>'
     h += '<hr><div id="myAsthmaPicDiv" hidden><img id="myAsthmaPic" class="zoomTarget"></div>'
@@ -34,11 +33,38 @@ console.log('loaded myAsthma.js :-)');
         console.log('pic size '+f.total+' saved in localStorage')
         loadImg()
     }
+
+    var showPlan=function(){
+        console.log('show asthma action plan on file')
+        myAsthmaPicDiv.hidden=false
+        myAsthmaPic.style.width="100%"
+    }
+
+    var hidePlan=function(){
+        console.log('hide asthma action plan')
+        myAsthmaPicDiv.hidden=true
+        myAsthmaPic.style.width="100%"
+    }
+
+    var triggerPlan=function(){
+        if(document.getElementById('gotoPlanOnFile')){
+            gotoPlanOnFile.onclick=function(tg){
+                if(myAsthmaPicDiv.hidden){
+                    showPlan()
+                }else{
+                    hidePlan()
+                }
+            }
+        }
+    }
+
     var loadImg=function(){
         var imgSrc = localStorage.myAsthmaPic
         if(imgSrc){
             myAsthmaPic.src=imgSrc
             msg.innerHTML='You have a <button class="btn btn-primary btn-lg" id="gotoPlanOnFile">asthma plan on file</button>,<br> you can also load a new plan: <button id="addPlan" class="btn btn-primary btn-md">+</button>'
+            triggerPlan()
+            gotoPlanOnFile.click()
             addPlan.onclick=function(){
                 if(loadFileDiv.hidden){
                     loadFileDiv.hidden=false
@@ -58,18 +84,37 @@ console.log('loaded myAsthma.js :-)');
     }
     loadImg()
 
-    gotoPlanOnFile.onclick=function(tg){
-        if(myAsthmaPicDiv.hidden){
-            console.log('show asthma action plan on file')
-            myAsthmaPicDiv.hidden=false
-            myAsthmaPic.style.width="100%"
-            //myAsthmaPic.src=localStorage.myAsthmaPic
-        }else{
-            console.log('hide asthma action plan')
-            //myAsthmaPic.src=""
-            myAsthmaPicDiv.hidden=true
-            myAsthmaPic.style.width="100%"
+    
+    triggerPlan() // trigger show/hide behavior for gotoPlanOnFile button    
+
+    // how do you feel
+    feelFine.onmouseover=feelNotso.onmouseover=feelBad.onmouseover=function(){
+        this.children[0].style.fontSize=60
+    }
+    //onmouseleave
+    feelFine.onmouseleave=feelNotso.onmouseleave=feelBad.onmouseleave=function(){
+        this.children[0].style.fontSize=50
+    }
+
+    feelFine.onclick=feelNotso.onclick=feelBad.onclick=function(){
+        console.log(Date())
+        var h = ''
+        switch(this.style.color) {
+            case "green":
+                console.log(1)
+                break
+            case "orange":
+                console.log(2)
+                break
+            case "red":
+                console.log(3)
+                break
+            default:
+                console.log(4)
+                break
         }
+
+        
     }
 
     // load history
@@ -91,18 +136,18 @@ console.log('loaded myAsthma.js :-)');
 
                   data.addRows([
                     ['Fine',     new Date(2000, 8, 5), new Date(2001, 1, 5)],
-                    ['Not good', new Date(2001, 8, 5), new Date(2002, 1, 5)],
+                    ['NotG', new Date(2001, 8, 5), new Date(2002, 1, 5)],
                     ['Bad', new Date(2002, 8, 5), new Date(2003, 1, 5)],
                     ['Fine', new Date(2003, 8, 5), new Date(2004, 1, 5)],
                     ['Bad', new Date(2004, 8, 5), new Date(2005, 1, 5)],
-                    ['Not good',  new Date(2005, 8, 5), new Date(2006, 1, 5)],
+                    ['NotG',  new Date(2005, 8, 5), new Date(2006, 1, 5)],
                     ['Fine',   new Date(2006, 8, 5), new Date(2007, 1, 5)],
                     ['Fine',      new Date(2007, 8, 5), new Date(2008, 1, 5)],
-                    ['Not good',  new Date(2008, 8, 5), new Date(2009, 1, 5)],
+                    ['NotG',  new Date(2008, 8, 5), new Date(2009, 1, 5)],
                     ['Fine',   new Date(2009, 8, 5), new Date(2010, 1, 5)],
                     ['Bad',    new Date(2010, 8, 5), new Date(2011, 1, 5)],
                     ['Fine',      new Date(2011, 8, 5), new Date(2012, 1, 5)],
-                    ['Not good',     new Date(2012, 8, 5), new Date(2013, 1, 5)],
+                    ['NotG',     new Date(2012, 8, 5), new Date(2013, 1, 5)],
                     ['Bad',     new Date(2013, 8, 5), new Date(2014, 1, 5)],
                   ]);
 
