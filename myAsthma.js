@@ -91,13 +91,13 @@ console.log('loaded myAsthma.js :-)');
     // how do you feel
     feelFine.onmouseover=feelNotso.onmouseover=feelBad.onmouseover=function(){
         if(!this.clicked){
-            this.children[0].style.fontSize=60
+            this.style.fontSize=60
         }
     }
     //onmouseleave
     feelFine.onmouseleave=feelNotso.onmouseleave=feelBad.onmouseleave=function(){
         if(!this.clicked){
-            this.children[0].style.fontSize=50
+            this.style.fontSize=50
         }
     }
 
@@ -106,7 +106,7 @@ console.log('loaded myAsthma.js :-)');
         feelFine.clicked=feelNotso.clicked=feelBad.clicked=false
         feelFine.style.fontSize=feelNotso.style.fontSize=feelBad.style.fontSize=50
         this.clicked=true
-        this.style.fontSize=100
+        this.style.fontSize=75
         howDoYouFeelTxt.style.color=this.style.color
         var h = ''
         switch(this.style.color) {
@@ -151,7 +151,7 @@ console.log('loaded myAsthma.js :-)');
         h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Used Inhaler <input id="usedInhaler" type="checkbox"></p>'
         h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Took Medicine <input id="tookPills" type="checkbox"> <span style="font-size:medium">(pill / tablet)</span></p>'
         h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Indoors <input id="amIndoor" type="checkbox"> / Outdoors <input id="amOutdoor" type="checkbox"></p>'
-        h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Exercising <input id="amIndoor" type="checkbox"></p>'
+        h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Exercising <input id="amExercising" type="checkbox"> / Not <input id="notExercising" type="checkbox"></p>'
         
         asthmaActionRecordUI.innerHTML=h
         // button decoration
