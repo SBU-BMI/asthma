@@ -149,7 +149,7 @@ console.log('loaded myAsthma.js :-)');
         h += '<div id="asthmaActionRecordUI" style="font-size:x-large">...</div>'
         howDoYouFeelTxt.innerHTML=h
         h='<h3> <button id="asthmaLogBookRecord" style="font-size:x-large">Save</button> in your Log Book:</h3>'
-        h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Used Inhaler <input id="usedInhaler" type="checkbox"></p>'
+        h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Used Inhaler <input id="usedInhaler" type="checkbox"> / Spacer <input id="usedInhaler" type="checkbox"> <a href="http://www.asthma.ca/adults/treatment/spacers.php">?</a></p>'
         h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Took Medicine <input id="tookPills" type="checkbox"> <span style="font-size:medium">(pill / tablet)</span></p>'
         h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Indoors <input id="amIndoor" type="checkbox"> / Outdoors <input id="amOutdoor" type="checkbox"></p>'
         h += '<p style="font-style:italic">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Exercising <input id="amExercising" type="checkbox"> / Not <input id="notExercising" type="checkbox"></p>'
@@ -218,6 +218,7 @@ console.log('loaded myAsthma.js :-)');
                   var chart = new google.visualization.Timeline(myAsthmaHistoryDiv);
 
                   chart.draw(data, options);
+                  showPlan();
                 }
 
 
