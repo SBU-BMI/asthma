@@ -29,6 +29,7 @@ console.log('loaded myAsthma.js :-)');
     //document.body.innerHTML=h
     var reader = new FileReader()
     reader.onload=function(f){
+        localStorage.removeItem('myAsthmaPic') // otherwiese localStorage may be full
         localStorage.setItem('myAsthmaPic',f.target.result)
         console.log('pic size '+f.total+' saved in localStorage')
         loadImg()
