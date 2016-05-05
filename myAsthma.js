@@ -64,7 +64,7 @@ console.log('loaded myAsthma.js :-)');
         var imgSrc = localStorage.myAsthmaPic
         if(imgSrc){
             myAsthmaPic.src=imgSrc
-            msg.innerHTML='You have an <button class="btn btn-primary btn-lg" id="gotoPlanOnFile">asthma plan on file</button>,<br> you can also load a new plan: <button id="addPlan" class="btn btn-primary btn-md">+</button>'
+            msg.innerHTML='<button class="btn btn-primary btn-lg" id="gotoPlanOnFile">See asthma plan</button> or load new: <button id="addPlan" class="btn btn-primary btn-md">+</button>'
             triggerPlan()
             //gotoPlanOnFile.click()
             addPlan.onclick=function(){
